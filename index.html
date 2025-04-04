@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulado Capitão Amador</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    .pergunta { margin-bottom: 20px; }
+    .alternativa { display: block; margin: 10px 0; padding: 10px; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
+    .alternativa.correta { background-color: #d4edda; border-color: #28a745; }
+    .alternativa.errada { background-color: #f8d7da; border-color: #dc3545; }
+    .alternativa.disabled { pointer-events: none; opacity: 0.7; }
+    #feedback { font-weight: bold; margin-top: 15px; }
+    #proxima { display: none; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="pergunta" id="pergunta">
+    <h3>CPA I 2021 – 28ª Questão</h3>
+    <p>Dentre as alternativas abaixo, assinale a que expressa o fundamento mais importante da navegação paralela indexada.</p>
+    <div class="alternativa" onclick="verificarResposta(this, true)">A possibilidade de visualizar antecipadamente o tráfego de embarcações na área e evitar abalroamentos.</div>
+    <div class="alternativa" onclick="verificarResposta(this, false)">O acompanhamento em tempo real da posição do navio em relação à derrota traçada.</div>
+    <div class="alternativa" onclick="verificarResposta(this, false)">A garantia de que o navio está navegando de acordo com o RIPEAM.</div>
+    <div class="alternativa" onclick="verificarResposta(this, false)">A obtenção da posição radar precisa, pois o método utiliza linhas de marcação radar.</div>
+    <div class="alternativa" onclick="verificarResposta(this, false)">A confiabilidade em uma posição radar que independe das linhas de costa.</div>
+    <div id="feedback"></div>
+    <button id="proxima" onclick="proximaPergunta()">Próxima Pergunta</button>
+  </div>
+
+  <script>
+    function verificarResposta(elemento, correta) {
+      const alternativas = document.querySelectorAll('.alternativa');
+      alternativas.forEach(alt => alt.classList.add('disabled'));
+      if (correta) {
+        elemento.classList.add('correta');
+        document.getElementById('feedback').innerText = '✅ Resposta correta!';
+      } else {
+        elemento.classList.add('errada');
+        const corretaEl = [...alternativas].find(el => el.onclick.toString().includes('true'));
+        corretaEl.classList.add('correta');
+        document.getElementById('feedback').innerText = '❌ Resposta incorreta.';
+      }
+      document.getElementById('proxima').style.display = 'inline-block';
+    }
+
+    function proximaPergunta() {
+      alert("Aqui entraria a próxima pergunta — posso colocar mais assim que você me mandar!");
+    }
+  </script>
+
+</body>
+</html>
+
